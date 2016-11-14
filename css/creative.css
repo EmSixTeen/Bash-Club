@@ -518,3 +518,7 @@ table tr td:nth-child(1) { width:1px; } /* Somehow this rando guess fixes malali
   color: #ee80a7;
   border-radius: 18px;
 }
+
+.btn-info {
+  background-color: #ee80a7;
+}
