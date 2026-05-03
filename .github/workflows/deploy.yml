@@ -1,0 +1,23 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [master, main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull latest from GitHub
+        run: |
+          curl -s -G \
+            -u "${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/VersionControl/update"
+
+      - name: Deploy HEAD commit
+        run: |
+          curl -s -X POST \
+            -u "${{ secrets.CPANEL_USER }}:${{ secrets.CPANEL_TOKEN }}" \
+            --data-urlencode "repository_root=${{ secrets.CPANEL_REPO_ROOT }}" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/VersionControlDeployment/create"
