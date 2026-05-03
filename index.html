@@ -71,10 +71,26 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html {
+      font-size: clamp(14px, 12.29px + 0.54vw, 20px);
+    }
+
     html, body {
       height: 100%;
       overflow: hidden;
       font-family: var(--font-body);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* Hero */
@@ -172,6 +188,8 @@
 <body>
   <div class="hero">
     <div class="hero__content">
+
+      <h1 class="sr-only">Bash Club</h1>
 
       <svg class="hero__logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 543.1 330.23" role="img" aria-label="Bash Club">
         <defs>
